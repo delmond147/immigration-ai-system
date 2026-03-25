@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from src.agent.immigration_agent import chat_with_agent, reset_conversation
 from src.agent.knowledge_base import build_vector_store, CHUNKS_DB_PATH
 from src.database.airtable_client import create_lead
+from src.email_service.mailer import send_welcome_email
 
 load_dotenv()
 
@@ -132,6 +133,11 @@ with left_col:
                         phone="",
                         case_type=case_type_input,
                         source="AI Chat Widget",
+                    )
+
+                    # Send Welcome Email to New Lead
+                    send_welcome_email(
+                        name=name_input, email=email_input, case_type=case_type_input
                     )
                     st.success("✅ Your information has been saved!")
                 except Exception as e:
