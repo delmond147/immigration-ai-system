@@ -20,14 +20,19 @@ def send_email(to_email: str, subject: str, html_content: str):
 
         msg.attach(MIMEText(html_content, "html"))
 
-        with smtplib.SMTP_SSL("smtp.email.com", 465) as server:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.ehlo()
+            server.starttls()
             server.login(gmail_user, gmail_password)
             server.sendmail(gmail_user, to_email, msg.as_string())
 
         print(f"✅ Email sent to: {to_email}")
         return True
     except Exception as e:
+        import traceback
+
         print(f"❌ Email failed: {e}")
+        traceback.print_exc()
         return None
 
 
