@@ -238,8 +238,11 @@ with right_col:
     # Build knowledge base on first lead
     if not st.session_state.kb_built:
         with st.spinner("Setting up knowledge base..."):
-            build_vector_store()
-            st.session_state.kb_built = True
+            try:
+                build_vector_store()
+                st.session_state.kb_built = True
+            except Exception as e:
+                st.error(f"Knowledge base error: {e}")
 
     # Display chat history
     for message in st.session_state.messages:
