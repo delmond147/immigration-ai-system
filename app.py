@@ -19,6 +19,8 @@ def load_secrets():
         os.environ["AIRTABLE_API_KEY"] = st.secrets["AIRTABLE_API_KEY"]
         os.environ["AIRTABLE_BASE_ID"] = st.secrets["AIRTABLE_BASE_ID"]
         os.environ["RESEND_API_KEY"] = st.secrets["RESEND_API_KEY"]
+        os.environ["GMAIL_USER"] = st.secrets["GMAIL_USER"]
+        os.environ["GMAIL_APP_PASSWORD"] = st.secrets["GMAIL_APP_PASSWORD"]
     except:
         # Local development - fall back to .env
         from dotenv import load_dotenv
