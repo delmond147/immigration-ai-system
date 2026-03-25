@@ -8,6 +8,6 @@ faiss_db/
 *.pkl
 knowledge_base/*.pdf
 ngrok.exe
-
+.streamlit/secrets.toml
 # Virtual environments
 .venv

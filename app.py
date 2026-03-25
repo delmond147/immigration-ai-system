@@ -9,6 +9,24 @@ from src.database.airtable_client import create_lead
 
 load_dotenv()
 
+
+# Load secrets from Streamlit Cloud or .env locally
+def load_secrets():
+    try:
+        # Streamlit Cloud
+        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+        os.environ["AIRTABLE_API_KEY"] = st.secrets["AIRTABLE_API_KEY"]
+        os.environ["AIRTABLE_BASE_ID"] = st.secrets["AIRTABLE_BASE_ID"]
+        os.environ["RESEND_API_KEY"] = st.secrets["RESEND_API_KEY"]
+    except:
+        # Local development - fall back to .env
+        from dotenv import load_dotenv
+
+        load_dotenv()
+
+
+load_secrets()
+
 # --- Page Config -------------------------------------
 st.set_page_config(
     page_title="Immigration Law Firm AI Assistant", page_icon="🏛️", layout="wide"
