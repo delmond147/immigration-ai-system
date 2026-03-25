@@ -1,0 +1,13 @@
+# Python-generated files
+.env
+__pycache__/
+*.pyc
+chroma_db/
+chunks_db.pkl
+faiss_db/
+*.pkl
+knowledge_base/*.pdf
+ngrok.exe
+
+# Virtual environments
+.venv

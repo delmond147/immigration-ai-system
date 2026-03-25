@@ -1,0 +1,15 @@
+{
+  "cSpell.words": [
+    "AIRTABLE",
+    "automations",
+    "DACA",
+    "dotenv",
+    "FAISS",
+    "GROQ",
+    "pyairtable",
+    "Tfidf",
+    "Vectorizer",
+    "vectorstore"
+  ],
+  "python.REPL.enableREPLSmartSend": false
+}

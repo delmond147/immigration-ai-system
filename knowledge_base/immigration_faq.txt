@@ -1,0 +1,72 @@
+This will take 2-3 minutes. ✅
+
+---
+
+### Step 2: Create Fake Firm Documents
+
+Create a folder called `knowledge_base` in your project root. Inside it create a file called `immigration_faq.txt`:
+```
+IMMIGRATION LAW FIRM - FREQUENTLY ASKED QUESTIONS
+
+WORK VISA (H-1B)
+================
+Q: What is an H-1B visa?
+A: The H-1B visa is a non-immigrant visa that allows U.S. companies to employ foreign workers in specialty occupations. These include fields like IT, finance, engineering, architecture, and medicine.
+
+Q: How long does H-1B processing take?
+A: Standard processing takes 3-6 months. Premium processing is available for an additional fee and takes 15 business days.
+
+Q: What documents are required for an H-1B visa?
+A: Required documents include: valid passport, job offer letter from a U.S. employer, educational certificates and transcripts, proof of work experience, Labor Condition Application (LCA), and Form I-129 petition.
+
+Q: Can my family come with me on an H-1B visa?
+A: Yes. Your spouse and unmarried children under 21 can accompany you on an H-4 dependent visa.
+
+GREEN CARD (Permanent Residence)
+=================================
+Q: What is a Green Card?
+A: A Green Card (Permanent Resident Card) allows a foreign national to live and work permanently in the United States.
+
+Q: How long does the Green Card process take?
+A: The timeline varies significantly. Employment-based Green Cards typically take 1-3 years. Family-based Green Cards can take 2-10 years depending on the category and country of origin.
+
+Q: What are the main ways to get a Green Card?
+A: The main pathways are: through a family member who is a U.S. citizen or permanent resident, through employment with a U.S. company, through the Diversity Visa Lottery, or through refugee or asylum status.
+
+Q: What documents are needed for a Green Card application?
+A: Key documents include: Form I-485, valid passport, birth certificate, marriage certificate (if applicable), police clearance certificate, medical examination results (Form I-693), and proof of financial support (Form I-864).
+
+CITIZENSHIP (Naturalization)
+==============================
+Q: How long must I have a Green Card before applying for citizenship?
+A: Generally 5 years. If you are married to a U.S. citizen, the requirement is reduced to 3 years.
+
+Q: What is the citizenship test?
+A: The naturalization test has two components: an English language test and a civics test. The civics test covers U.S. history and government. Applicants must answer 6 out of 10 questions correctly.
+
+Q: What documents are needed for naturalization?
+A: Required documents include: Form N-400, copy of Green Card, passport photos, tax returns for the past 5 years, and any court records if applicable.
+
+DACA (Deferred Action for Childhood Arrivals)
+==============================================
+Q: Who qualifies for DACA?
+A: To qualify for DACA you must have arrived in the U.S. before age 16, have continuously resided in the U.S. since June 15, 2007, have been under age 31 as of June 15, 2012, be currently in school or have graduated, and have no felony convictions.
+
+Q: How long does DACA protection last?
+A: DACA status is granted for 2 years and can be renewed.
+
+Q: What benefits does DACA provide?
+A: DACA recipients receive protection from deportation and are eligible for a work permit. It does not provide a path to permanent residence or citizenship.
+
+OUR FIRM SERVICES
+==================
+We offer consultations for all immigration matters including work visas, family petitions, green card applications, naturalization, DACA renewals, deportation defense, and asylum applications.
+
+Initial consultations are $150 for 30 minutes.
+Full case representation fees vary by case type and complexity.
+
+Our attorneys are available Monday to Friday, 9am to 6pm EST.
+Emergency consultations are available for deportation cases.
+
+Contact us at: delmondbongha147@gmail.com
+Phone: (+237)-68074-9528
