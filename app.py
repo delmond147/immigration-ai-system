@@ -134,14 +134,22 @@ with left_col:
                         case_type=case_type_input,
                         source="AI Chat Widget",
                     )
+                    st.success("✅ Your information has been saved!")
 
                     # Send Welcome Email to New Lead
-                    send_welcome_email(
+                    email_result = send_welcome_email(
                         name=name_input, email=email_input, case_type=case_type_input
                     )
-                    st.success("✅ Your information has been saved!")
+                    if email_result:
+                        st.success("✅ Welcome email sent!")
+                    else:
+                        st.warning(
+                            "⚠️ Email could not be sent. Email sender require a domain verification"
+                        )
+
                 except Exception as e:
-                    st.warning(f"Could not save information: {e}")
+                    st.warning(f"❌ Error: {e}")
+
             reset_conversation()
             st.rerun()
 
