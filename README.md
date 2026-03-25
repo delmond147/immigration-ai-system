@@ -5,7 +5,7 @@ Eliminates repetitive tasks through intelligent automation and a 24/7 AI assista
 
 ## 🚀 Live Demo
 
-[View Live Demo](your-streamlit-url-here)
+[View Live Demo](https://immigration-ai-system-v1.streamlit.app/)
 
 ## 🎯 What It Does
 
