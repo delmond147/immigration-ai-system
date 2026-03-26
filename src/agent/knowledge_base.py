@@ -34,7 +34,7 @@ def load_documents():
 
 
 def build_vector_store():
-    """Build FAISS vector store from loaded documents."""
+    """Build and save chunks from documents"""
     print("🔍 Building knowledge base...")
 
     # Load documents
@@ -48,8 +48,9 @@ def build_vector_store():
     chunks = splitter.split_documents(documents)
     print(f"✂️ Split into {len(chunks)} chunks.")
 
-    # Save chunks to disk as pickle
     chunk_texts = [chunk.page_content for chunk in chunks]
+
+    # Save chunks to disk as pickle
     with open(CHUNKS_DB_PATH, "wb") as f:
         pickle.dump(chunk_texts, f)
 
@@ -77,13 +78,12 @@ def search_knowledge_base(query: str, k: int = 3) -> str:
     print(f"📁 File exists: {os.path.exists(CHUNKS_DB_PATH)}")
 
     # Build if doesn't exist
-    if not os.path.exists(CHUNKS_DB_PATH):
-        build_vector_store()
-
-    chunks = load_chunks()
+    chunks = build_vector_store()
 
     if not chunks:
+        print("⚠️ No chunks found!")
         return ""
+    print(f"📚 Searching through {len(chunks)} chunks...")
 
     # Build TF-IDF matrix
     vectorizer = TfidfVectorizer(stop_words="english")
@@ -100,7 +100,9 @@ def search_knowledge_base(query: str, k: int = 3) -> str:
     top_chunks = [chunks[i] for i in top_indices if similarities[i] > 0]
 
     if not top_chunks:
+        print("⚠️ No relevant chunks found for query!")
         return ""
 
     context = "\n\n".join(top_chunks)
+    print(f"📄 Context found ({len(context)} chars)")
     return context

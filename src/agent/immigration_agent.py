@@ -82,7 +82,7 @@ emails, pricing or hours, use those exact details in your answer."""
     # Call Gemini API
     response = client_ai.models.generate_content(
         model="gemini-2.0-flash",
-        content=enhanced_message,
+        contents=enhanced_message,
         config=types.GenerateContentConfig(
             system_instruction=SYSTEM_PROMPT, max_output_tokens=1024, temperature=0.7
         ),
