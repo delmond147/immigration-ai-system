@@ -1,4 +1,5 @@
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 import os
 import sys
@@ -10,10 +11,10 @@ from src.agent.knowledge_base import search_knowledge_base
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
-    system_instruction="""
+client_ai = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+SYSTEM_PROMPT = (
+    """
 You are a professional AI assistant for an immigration law firm.
 
 CRITICAL INSTRUCTION: When FIRM DOCUMENTS CONTEXT is provided in the
@@ -36,6 +37,7 @@ End every response with:
 "Would you like to schedule a consultation with one of our attorneys?"
 """,
 )
+
 
 conversation_history = []
 
@@ -66,16 +68,30 @@ emails, pricing or hours, use those exact details in your answer."""
         enhanced_message = user_message
 
     # Add to history in Gemini format
-    conversation_history.append({"role": "user", "parts": [enhanced_message]})
+    conversation_history.append({"role": "user", "content": enhanced_message})
 
+    # Build messages list
+    messages = [
+        {"role": "user", "content": SYSTEM_PROMPT},
+        {
+            "role": "assistant",
+            "content": "Understood. I am a professional AI assistant for an immigration law firm.",
+        },
+    ]
+    messages += conversation_history
     # Call Gemini API
-    chat = model.start_chat(history=conversation_history[:-1])
-    response = chat.send_message(enhanced_message)
+    response = client_ai.models.generate_content(
+        model="gemini-2.0-flash",
+        content=enhanced_message,
+        config=types.GenerateContentConfig(
+            system_instruction=SYSTEM_PROMPT, max_output_tokens=1024, temperature=0.7
+        ),
+    )
     reply = response.text
 
     # Store original message in history
-    conversation_history[-1] = {"role": "user", "parts": [user_message]}
-    conversation_history.append({"role": "model", "parts": [reply]})
+    conversation_history[-1] = {"role": "user", "content": user_message}
+    conversation_history.append({"role": "assistant", "content": reply})
 
     # Log to Airtable
     if log:

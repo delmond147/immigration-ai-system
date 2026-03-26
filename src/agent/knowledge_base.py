@@ -10,8 +10,8 @@ import pathlib
 load_dotenv()
 
 BASE_DIR = pathlib.Path(__file__).parent.parent.parent
-KNOWLEDGE_BASE_PATH = str(BASE_DIR / "knowledge_base")
 CHUNKS_DB_PATH = str(BASE_DIR / "chunks_db.pkl")
+KNOWLEDGE_BASE_PATH = str(BASE_DIR / "knowledge_base")
 
 
 def load_documents():
