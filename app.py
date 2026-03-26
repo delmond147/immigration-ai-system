@@ -21,6 +21,7 @@ def load_secrets():
         os.environ["RESEND_API_KEY"] = st.secrets["RESEND_API_KEY"]
         os.environ["GMAIL_USER"] = st.secrets["GMAIL_USER"]
         os.environ["GMAIL_APP_PASSWORD"] = st.secrets["GMAIL_APP_PASSWORD"]
+        os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
     except:
         # Local development - fall back to .env
         from dotenv import load_dotenv

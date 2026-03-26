@@ -5,6 +5,8 @@
     "DACA",
     "dotenv",
     "FAISS",
+    "genai",
+    "generativeai",
     "GROQ",
     "pyairtable",
     "Tfidf",

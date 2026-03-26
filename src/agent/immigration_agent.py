@@ -1,4 +1,5 @@
-from groq import Groq
+# from groq import Groq
+import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 import sys
@@ -10,7 +11,11 @@ from src.agent.knowledge_base import search_knowledge_base
 
 load_dotenv()
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+# Initialize Gemini
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 SYSTEM_PROMPT = """
 You are a professional AI assistant for an immigration law firm.
@@ -66,22 +71,37 @@ def chat_with_agent(
     # Add enhanced message to history
     conversation_history.append({"role": "user", "content": enhanced_message})
 
+    # Build full conversation with system prompt
+    full_conversation = [
+        {"role": "user", "parts": [SYSTEM_PROMPT]},
+        {
+            "role": "model",
+            "parts": [
+                "Understood. I am a professional AI assistant for an immigration law firm. I will answer questions using the provided context and follow all the guidelines you've outlined."
+            ],
+        },
+    ] + conversation_history
+
+    # Call Gemini API
+    response = model.generate_content(full_conversation)
+    reply = response.text
+
     # Call Groq API with full conversation history
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[{"role": "system", "content": SYSTEM_PROMPT}] + conversation_history,
-        temperature=0.7,
-        max_tokens=1000,
-    )
+    # response = client.chat.completions.create(
+    #     model="llama-3.3-70b-versatile",
+    #     messages=[{"role": "system", "content": SYSTEM_PROMPT}] + conversation_history,
+    #     temperature=0.7,
+    #     max_tokens=1000,
+    # )
 
     # Extract reply
 
-    reply = response.choices[0].message.content
+    # reply = response.choices[0].message.content
 
     # Store original message in history (not enhanced version)
-    conversation_history[-1] = {"role": "user", "content": user_message}
-    conversation_history.append({"role": "assistant", "content": reply})
+    conversation_history[-1] = {"role": "user", "parts": [user_message]}
+    conversation_history.append({"role": "assistant", "parts": [reply]})
 
     # Log conversation to Airtable
     if log:
